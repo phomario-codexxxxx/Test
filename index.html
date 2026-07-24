@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projeto · HTML, CSS & JS</title>
+  <!-- Font Awesome para ícones (opcional, mas adiciona charme) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ----- RESET & BASE ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+      background: linear-gradient(145deg, #f8faff 0%, #eef2f7 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 1rem;
+    }
+
+    /* ----- CARD PRINCIPAL (vidro) ----- */
+    .glass-card {
+      max-width: 1100px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.60);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 3rem 3rem 2rem 2rem;
+      box-shadow: 0 30px 50px rgba(0, 20, 40, 0.20), 0 8px 20px rgba(0,0,0,0.06);
+      padding: 2.5rem 2.8rem;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(255,255,255,0.5);
+    }
+
+    @media (max-width: 600px) {
+      .glass-card {
+        padding: 1.8rem 1.2rem;
+        border-radius: 2rem;
+      }
+    }
+
+    /* ----- CABEÇALHO ----- */
+    .header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2.2rem;
+      border-bottom: 2px solid rgba(0, 30, 60, 0.08);
+      padding-bottom: 1.2rem;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-icon {
+      background: #1e2b3c;
+      color: white;
+      width: 48px;
+      height: 48px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: 0 6px 12px rgba(0,20,40,0.2);
+    }
+
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.9rem;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #1a2a3a, #2c3e50);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .badge {
+      background: #2c3e50;
+      color: white;
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.3px;
+      border: 1px solid rgba(255,255,255,0.3);
+      backdrop-filter: blur(4px);
+      background: rgba(30, 50, 70, 0.8);
+    }
+
+    /* ----- GRADE DE ESTUDOS / TECHS ----- */
+    .tech-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.2rem 1.8rem;
+      margin: 2.2rem 0 2.8rem 0;
+      padding: 0.5rem 0;
+    }
+
+    .tech-item {
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(4px);
+      padding: 0.7rem 1.6rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      border: 1px solid rgba(255,255,255,0.7);
+      transition: 0.15s;
+    }
+
+    .tech-item i {
+      font-size: 1.4rem;
+      color: #1e2b3c;
+    }
+
+    .tech-item span {
+      color: #1a2938;
+    }
+
+    .tech-item:hover {
+      background: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(0, 20, 40, 0.10);
+    }
+
+    /* ----- APRESENTAÇÃO DO PROJETO ----- */
+    .project-showcase {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin: 2.5rem 0 2rem 0;
+    }
+
+    .project-info {
+      flex: 2 1 300px;
+    }
+
+    .project-info h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #0b1a2a;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 0.8rem;
+    }
+
+    .project-info h2 i {
+      color: #2c3e50;
+      margin-right: 10px;
+    }
+
+    .project-desc {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #1f2e3f;
+      margin-bottom: 1.8rem;
+      background: rgba(255,255,255,0.3);
+      padding: 1.2rem 1.5rem;
+      border-radius: 28px;
+      backdrop-filter: blur(4px);
+      border-left: 4px solid #1e2b3c;
+    }
+
+    .project-desc i {
+      color: #2c3e50;
+      margin-right: 6px;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .btn {
+      background: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 60px;
+      font-weight: 600;
+      color: #0b1a2a;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 6px 14px rgba(0, 20, 40, 0.08);
+      transition: 0.15s;
+      border: 1px solid rgba(0,0,0,0.02);
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: #1e2b3c;
+      color: white;
+      border: 1px solid #2c4055;
+      box-shadow: 0 10px 18px rgba(20, 40, 70, 0.20);
+    }
+
+    .btn-primary i {
+      color: #b0c7dd;
+    }
+
+    .btn-primary:hover {
+      background: #14222e;
+      transform: scale(1.02);
+      box-shadow: 0 12px 24px rgba(0, 20, 40, 0.30);
+    }
+
+    .btn-outline {
+      background: transparent;
+      backdrop-filter: blur(4px);
+      border: 1.5px solid #1e2b3c;
+    }
+
+    .btn-outline:hover {
+      background: rgba(30, 43, 60, 0.06);
+      transform: scale(1.02);
+    }
+
+    /* ----- CARD DE DEMONSTRAÇÃO (JS) ----- */
+    .demo-card {
+      flex: 1 1 240px;
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(4px);
+      border-radius: 2.5rem;
+      padding: 1.8rem 1.5rem;
+      border: 1px solid rgba(255,255,255,0.8);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.02);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: 0.2s;
+    }
+
+    .demo-card h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #0b1a2a;
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-card p {
+      color: #2f4055;
+      font-size: 0.95rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .interact-area {
+      background: rgba(0,0,0,0.02);
+      padding: 0.8rem 0.5rem;
+      border-radius: 60px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .counter-box {
+      background: white;
+      padding: 0.4rem 1.2rem;
+      border-radius: 60px;
+      font-size: 2.2rem;
+      font-weight: 700;
+      min-width: 100px;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.04);
+      color: #0b1a2a;
+      letter-spacing: 1px;
+    }
+
+    .btn-demo {
+      background: #eef2f7;
+      border: none;
+      border-radius: 60px;
+      padding: 0.5rem 1.5rem;
+      font-weight: 600;
+      color: #1a2a3a;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.1s;
+      border: 1px solid rgba(0,0,0,0.02);
+      cursor: pointer;
+      font-size: 0.95rem;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .btn-demo i {
+      font-size: 1rem;
+    }
+
+    .btn-demo:hover {
+      background: #dce3ed;
+      transform: scale(1.01);
+    }
+
+    .btn-demo:active {
+      transform: scale(0.97);
+    }
+
+    /* ----- FOOTER / ESTUDOS EM DETALHE ----- */
+    .study-footer {
+      margin-top: 2.8rem;
+      padding-top: 1.8rem;
+      border-top: 2px solid rgba(0, 30, 60, 0.06);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.8rem 1.5rem;
+    }
+
+    .study-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1rem;
+    }
+
+    .study-tag {
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(4px);
+      padding: 0.3rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #1a2a3a;
+      border: 1px solid rgba(255,255,255,0.8);
+    }
+
+    .study-tag i {
+      margin-right: 6px;
+      color: #2c3e50;
+    }
+
+    .footer-credits {
+      color: #3a4e62;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .footer-credits i {
+      margin: 0 4px;
+    }
+
+    /* responsividade */
+    @media (max-width: 700px) {
+      .project-showcase {
+        flex-direction: column;
+      }
+      .demo-card {
+        width: 100%;
+      }
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="glass-card">
+    
+    <!-- cabeçalho -->
+    <header class="header">
+      <div class="logo-area">
+        <div class="logo-icon"><i class="fas fa-code"></i></div>
+        <span class="logo-text">DevProject</span>
+      </div>
+      <div class="badge">
+        <i class="fas fa-rocket" style="margin-right: 6px;"></i> Estudos · 2026
+      </div>
+    </header>
+
+    <!-- tecnologias (HTML, CSS, JS) -->
+    <div class="tech-grid">
+      <div class="tech-item"><i class="fab fa-html5"></i> <span>HTML5</span></div>
+      <div class="tech-item"><i class="fab fa-css3-alt"></i> <span>CSS3</span></div>
+      <div class="tech-item"><i class="fab fa-js"></i> <span>JavaScript</span></div>
+      <div class="tech-item"><i class="fas fa-layer-group"></i> <span>Design System</span></div>
+    </div>
+
+    <!-- corpo principal: apresentação + demo interativa -->
+    <div class="project-showcase">
+      <!-- coluna esquerda: info do projeto -->
+      <div class="project-info">
+        <h2><i class="fas fa-terminal"></i> Projeto Base</h2>
+        <div class="project-desc">
+          <i class="fas fa-arrow-right" style="opacity: 0.7;"></i> 
+          Este template sintetiza os fundamentos de <strong>HTML</strong>, <strong>CSS</strong> e 
+          <strong>JavaScript</strong> em uma landing page moderna. Use como ponto de partida para seus projetos.
+          <br><br>
+          <i class="fas fa-graduation-cap" style="opacity: 0.7;"></i> 
+          Foco em: semântica, flexbox, grid, variáveis CSS, interatividade com JS e boas práticas.
+        </div>
+        <div class="btn-group">
+          <a href="#" class="btn btn-primary"><i class="fab fa-github"></i> Ver no GitHub</a>
+          <a href="#" class="btn btn-outline"><i class="fas fa-play"></i> Live demo</a>
+        </div>
+      </div>
+
+      <!-- coluna direita: card com interação JS -->
+      <div class="demo-card">
+        <h3><i class="fas fa-bolt" style="margin-right: 6px;"></i>Interatividade</h3>
+        <p>Exemplo de estado com JavaScript puro</p>
+        <div class="interact-area">
+          <div class="counter-box" id="contadorDisplay">0</div>
+          <button class="btn-demo" id="btnIncrementar">
+            <i class="fas fa-plus-circle"></i> Incrementar
+          </button>
+          <button class="btn-demo" id="btnResetar" style="background: #f0f4fc;">
+            <i class="fas fa-undo-alt"></i> Resetar
+          </button>
+        </div>
+        <div style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.6; width: 100%; border-top: 1px solid rgba(0,0,0,0.04); padding-top: 0.7rem;">
+          <i class="fas fa-code"></i> JS interage com o DOM
+        </div>
+      </div>
+    </div>
+
+    <!-- rodapé com tags de estudos e créditos -->
+    <div class="study-footer">
+      <div class="study-tags">
+        <span class="study-tag"><i class="fas fa-tag"></i> Estrutura semântica</span>
+        <span class="study-tag"><i class="fas fa-palette"></i> Variáveis CSS</span>
+        <span class="study-tag"><i class="fas fa-mobile-alt"></i> Responsivo</span>
+        <span class="study-tag"><i class="fas fa-cog"></i> Eventos JS</span>
+      </div>
+      <div class="footer-credits">
+        <i class="fas fa-heart" style="color: #b22234;"></i> 
+        estudo · HTML + CSS + JS
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript (interação do contador) -->
+  <script>
+    (function() {
+      // elementos
+      const display = document.getElementById('contadorDisplay');
+      const btnInc = document.getElementById('btnIncrementar');
+      const btnReset = document.getElementById('btnResetar');
+
+      // estado
+      let count = 0;
+
+      // atualiza o display
+      function atualizarDisplay() {
+        display.textContent = count;
+        // pequeno efeito visual (opcional)
+        display.style.transform = 'scale(0.95)';
+        setTimeout(() => display.style.transform = 'scale(1)', 80);
+      }
+
+      // incrementar
+      function incrementar() {
+        count++;
+        atualizarDisplay();
+      }
+
+      // resetar
+      function resetar() {
+        count = 0;
+        atualizarDisplay();
+      }
+
+      // eventos
+      btnInc.addEventListener('click', incrementar);
+      btnReset.addEventListener('click', resetar);
+
+      // inicializa
+      atualizarDisplay();
+
+      // extra: atalho com teclado (opcional)
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowUp' || e.key === '+') {
+          e.preventDefault();
+          incrementar();
+        } else if (e.key === 'r' || e.key === 'R') {
+          e.preventDefault();
+          resetar();
+        }
+      });
+
+      console.log('✅ JavaScript ativo — contador gerenciado com eventos.');
+    })();
+  </script>
+
+</body>
+</html>
